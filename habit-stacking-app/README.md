@@ -12,10 +12,15 @@ The Habit Stacking App is a web application designed to help users build and mai
   - Backend on Railway or Render
 
 ## Features
-- User authentication (to be implemented)
-- Create, read, update, and delete habits
-- Habit tracking and completion streaks
-- Responsive design for mobile and desktop
+- **Habit Stacking**: Link habits together using triggers ("After I X, I will Y")
+- **Streak Tracking**: Automatic calculation of current and best streaks
+- **Completion Tracking**: Mark habits as complete and track history
+- **Statistics Dashboard**: View overall stats and individual habit analytics
+- **Habit Chains**: Visualize linked habits in a chain
+- **Responsive Design**: Works seamlessly on mobile and desktop
+- Full CRUD operations for habits
+- RESTful API with FastAPI
+- Modern UI with Tailwind CSS
 
 ## Project Structure
 ```
@@ -37,15 +42,62 @@ habit-stacking-app
 
 ## Getting Started
 
-### Frontend
-1. Navigate to the `frontend` directory.
-2. Install dependencies: `npm install`.
-3. Start the development server: `npm run dev`.
+### Prerequisites
+- Python 3.8+
+- Node.js 14+
+- npm or yarn
 
-### Backend
-1. Navigate to the `backend` directory.
-2. Install dependencies: `pip install -r requirements.txt`.
-3. Run the FastAPI application: `uvicorn app.main:app --reload`.
+### Backend Setup
+1. Navigate to the `backend` directory:
+   ```bash
+   cd backend
+   ```
+
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Run the FastAPI application:
+   ```bash
+   uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+   ```
+
+5. Access the API:
+   - API: http://localhost:8000
+   - Interactive Docs: http://localhost:8000/docs
+
+### Frontend Setup
+1. Navigate to the `frontend` directory:
+   ```bash
+   cd frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env.local` file (copy from `.env.local.example`):
+   ```bash
+   NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
+   ```
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+5. Access the app: http://localhost:3000
+
+### Quick Start
+For a complete usage guide, see [USAGE_GUIDE.md](../USAGE_GUIDE.md) in the root directory.
 
 ### Deployment
 - Follow the respective documentation for deploying the frontend on Vercel and the backend on Railway or Render.
