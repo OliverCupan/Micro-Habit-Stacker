@@ -1,0 +1,16 @@
+{
+  "version": 1.0,
+  "name": "habit-stacking-app",
+  "builds": [
+    {
+      "src": "frontend/src/pages/index.tsx",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/app/main.py"
+    }
+  ]
+}

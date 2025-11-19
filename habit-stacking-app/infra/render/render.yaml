@@ -1,0 +1,16 @@
+version: 1
+services:
+  backend:
+    type: web
+    name: habit-stacking-backend
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port 10000 --reload"
+    healthCheck:
+      path: "/health"
+      interval: 10000
+      timeout: 2000
+      retries: 3
+    envVars:
+      DATABASE_URL: "sqlite:///./database.db"

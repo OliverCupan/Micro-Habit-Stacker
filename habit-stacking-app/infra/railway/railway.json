@@ -1,0 +1,19 @@
+{
+  "name": "habit-stacking-app",
+  "type": "node",
+  "version": "1.0.0",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "env": {
+    "DATABASE_URL": {
+      "required": true
+    },
+    "SECRET_KEY": {
+      "required": true
+    }
+  },
+  "deploy": {
+    "command": "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+  }
+}
