@@ -13,7 +13,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                                     Micro-Habit Stacker
                                 </h1>
                             </Link>
-                            <p className="text-blue-100 text-sm mt-1">Build better habits, one stack at a time</p>
+                            <p className="text-white text-sm mt-1 opacity-90">Build better habits, one stack at a time</p>
                         </div>
                         <nav className="flex gap-6">
                             <Link href="/">

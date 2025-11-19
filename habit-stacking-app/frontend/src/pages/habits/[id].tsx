@@ -95,26 +95,26 @@ const HabitDetail: React.FC = () => {
           ← Back to Habits
         </button>
 
-        <div className="bg-white p-8 rounded-lg shadow-md mb-6">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">{habit.title}</h1>
-          <p className="text-lg text-gray-600 mb-4">
-            <span className="font-medium">After I:</span> {habit.trigger}
+        <div className="bg-white p-8 rounded-2xl shadow-lg mb-6">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">{habit.title}</h1>
+          <p className="text-lg text-gray-700 mb-4">
+            <span className="font-medium text-gray-900">After I:</span> {habit.trigger}
           </p>
           {habit.description && (
             <p className="text-gray-700 mb-4">{habit.description}</p>
           )}
 
           <div className="flex gap-4 mb-6">
-            <span className="px-4 py-2 bg-gray-100 rounded-lg">
-              <span className="text-sm text-gray-600">Frequency:</span>{' '}
-              <span className="font-semibold">{habit.frequency}</span>
+            <span className="px-4 py-2 bg-gray-100 rounded-xl">
+              <span className="text-sm text-gray-700">Frequency:</span>{' '}
+              <span className="font-semibold text-gray-900">{habit.frequency}</span>
             </span>
-            <span className="px-4 py-2 bg-orange-100 rounded-lg">
-              <span className="text-sm text-gray-600">Current Streak:</span>{' '}
+            <span className="px-4 py-2 bg-orange-100 rounded-xl">
+              <span className="text-sm text-gray-700">Current Streak:</span>{' '}
               <span className="font-semibold text-orange-700">🔥 {habit.current_streak} days</span>
             </span>
-            <span className="px-4 py-2 bg-blue-100 rounded-lg">
-              <span className="text-sm text-gray-600">Best Streak:</span>{' '}
+            <span className="px-4 py-2 bg-blue-100 rounded-xl">
+              <span className="text-sm text-gray-700">Best Streak:</span>{' '}
               <span className="font-semibold text-blue-700">{habit.best_streak} days</span>
             </span>
           </div>
@@ -122,7 +122,7 @@ const HabitDetail: React.FC = () => {
           <button
             onClick={handleComplete}
             disabled={isCompletedToday}
-            className={`w-full py-3 rounded-lg font-semibold transition-colors ${
+            className={`w-full py-3 rounded-xl font-semibold transition-colors shadow-md ${
               isCompletedToday
                 ? 'bg-green-500 text-white cursor-not-allowed'
                 : 'bg-blue-600 text-white hover:bg-blue-700'
@@ -139,41 +139,41 @@ const HabitDetail: React.FC = () => {
         )}
 
         {stats && (
-          <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-            <h2 className="text-xl font-bold mb-4">Statistics</h2>
+          <div className="bg-white p-6 rounded-2xl shadow-lg mb-6">
+            <h2 className="text-xl font-bold mb-4 text-gray-900">Statistics</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="text-center p-4 bg-blue-50 rounded-lg">
+              <div className="text-center p-4 bg-blue-50 rounded-2xl">
                 <p className="text-2xl font-bold text-blue-700">{stats.total_completions}</p>
-                <p className="text-sm text-gray-600">Total Completions</p>
+                <p className="text-sm text-gray-700">Total Completions</p>
               </div>
-              <div className="text-center p-4 bg-green-50 rounded-lg">
+              <div className="text-center p-4 bg-green-50 rounded-2xl">
                 <p className="text-2xl font-bold text-green-700">{stats.completion_rate}%</p>
-                <p className="text-sm text-gray-600">30-Day Rate</p>
+                <p className="text-sm text-gray-700">30-Day Rate</p>
               </div>
-              <div className="text-center p-4 bg-orange-50 rounded-lg">
+              <div className="text-center p-4 bg-orange-50 rounded-2xl">
                 <p className="text-2xl font-bold text-orange-700">{stats.current_streak}</p>
-                <p className="text-sm text-gray-600">Current Streak</p>
+                <p className="text-sm text-gray-700">Current Streak</p>
               </div>
-              <div className="text-center p-4 bg-purple-50 rounded-lg">
+              <div className="text-center p-4 bg-purple-50 rounded-2xl">
                 <p className="text-2xl font-bold text-purple-700">{stats.best_streak}</p>
-                <p className="text-sm text-gray-600">Best Streak</p>
+                <p className="text-sm text-gray-700">Best Streak</p>
               </div>
             </div>
           </div>
         )}
 
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-xl font-bold mb-4">Completion History</h2>
+        <div className="bg-white p-6 rounded-2xl shadow-lg">
+          <h2 className="text-xl font-bold mb-4 text-gray-900">Completion History</h2>
           {completions.length === 0 ? (
-            <p className="text-gray-600 text-center py-4">No completions yet. Start building your streak!</p>
+            <p className="text-gray-700 text-center py-4">No completions yet. Start building your streak!</p>
           ) : (
             <div className="space-y-2 max-h-96 overflow-y-auto">
               {completions.map((completion) => (
                 <div
                   key={completion.id}
-                  className="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100"
+                  className="flex justify-between items-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
                 >
-                  <span className="text-gray-700">
+                  <span className="text-gray-800">
                     {new Date(completion.completed_date).toLocaleDateString('en-US', {
                       weekday: 'long',
                       year: 'numeric',
@@ -183,7 +183,7 @@ const HabitDetail: React.FC = () => {
                   </span>
                   <button
                     onClick={() => handleDeleteCompletion(completion.completed_date)}
-                    className="text-red-600 hover:text-red-800 text-sm"
+                    className="text-red-600 hover:text-red-800 text-sm font-medium"
                   >
                     Remove
                   </button>
