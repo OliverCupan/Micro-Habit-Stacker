@@ -1,16 +1,16 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import { Righteous } from 'next/font/google';
+import { DM_Sans } from 'next/font/google';
 
-const righteous = Righteous({
+const dmSans = DM_Sans({
   subsets: ['latin'],
   display: 'swap',
-  weight: '400',
+  weight: ['400', '500', '600', '700'],
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className={righteous.className}>
+    <div className={dmSans.className}>
       <Component {...pageProps} />
     </div>
   );
