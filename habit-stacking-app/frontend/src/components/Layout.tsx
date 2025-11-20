@@ -10,7 +10,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                         <div>
                             <Link href="/">
                                 <h1 className="text-xl font-semibold cursor-pointer text-gray-900 hover:text-gray-700 transition-colors">
-                                    Micro-Habit Stacker
+                                    Habit Stacker
                                 </h1>
                             </Link>
                         </div>
