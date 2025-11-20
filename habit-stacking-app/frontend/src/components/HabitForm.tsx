@@ -13,9 +13,20 @@ const HabitForm: React.FC<HabitFormProps> = ({ onSubmit, initialHabit, existingH
   const [trigger, setTrigger] = useState(initialHabit?.trigger || '');
   const [frequency, setFrequency] = useState<'daily' | 'weekly' | 'monthly'>(initialHabit?.frequency || 'daily');
   const [linkedHabitId, setLinkedHabitId] = useState<number | undefined>(initialHabit?.linked_habit_id);
+  const [useCustomTrigger, setUseCustomTrigger] = useState(false);
 
   // Get unique triggers from existing habits
   const existingTriggers = [...new Set(existingHabits.map(h => h.trigger))];
+
+  const handleTriggerSelectChange = (value: string) => {
+    if (value === '__custom__') {
+      setUseCustomTrigger(true);
+      setTrigger('');
+    } else {
+      setUseCustomTrigger(false);
+      setTrigger(value);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,6 +44,7 @@ const HabitForm: React.FC<HabitFormProps> = ({ onSubmit, initialHabit, existingH
       setTrigger('');
       setFrequency('daily');
       setLinkedHabitId(undefined);
+      setUseCustomTrigger(false);
     }
   };
 
@@ -57,24 +69,47 @@ const HabitForm: React.FC<HabitFormProps> = ({ onSubmit, initialHabit, existingH
         <label htmlFor="trigger" className="block text-sm font-medium text-gray-900 mb-2">
           Trigger (After I...) *
         </label>
-        <input
-          type="text"
-          id="trigger"
-          list="trigger-suggestions"
-          value={trigger}
-          onChange={(e) => setTrigger(e.target.value)}
-          required
-          placeholder="e.g., drink morning coffee"
-          className="w-full"
-        />
-        <datalist id="trigger-suggestions">
-          {existingTriggers.map((existingTrigger, index) => (
-            <option key={index} value={existingTrigger} />
-          ))}
-        </datalist>
+        {existingTriggers.length > 0 && !useCustomTrigger ? (
+          <select
+            id="trigger"
+            value={trigger || '__custom__'}
+            onChange={(e) => handleTriggerSelectChange(e.target.value)}
+            required
+            className="w-full"
+          >
+            <option value="">Select a trigger</option>
+            {existingTriggers.map((existingTrigger, index) => (
+              <option key={index} value={existingTrigger}>
+                {existingTrigger}
+              </option>
+            ))}
+            <option value="__custom__">+ New custom trigger</option>
+          </select>
+        ) : (
+          <div>
+            <input
+              type="text"
+              id="trigger"
+              value={trigger}
+              onChange={(e) => setTrigger(e.target.value)}
+              required
+              placeholder="e.g., drink morning coffee"
+              className="w-full"
+            />
+            {existingTriggers.length > 0 && (
+              <button
+                type="button"
+                onClick={() => setUseCustomTrigger(false)}
+                className="text-xs text-blue-600 hover:text-blue-700 mt-2"
+              >
+                ← Choose from existing triggers
+              </button>
+            )}
+          </div>
+        )}
         <p className="text-xs text-gray-500 mt-2">
           {existingTriggers.length > 0
-            ? 'Choose from existing triggers or type a new one'
+            ? 'Choose from existing triggers or create a new one'
             : 'What existing action triggers this habit?'}
         </p>
       </div>
