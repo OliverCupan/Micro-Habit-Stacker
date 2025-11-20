@@ -37,9 +37,9 @@ const HabitForm: React.FC<HabitFormProps> = ({ onSubmit, initialHabit, existingH
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-2xl shadow-lg">
+    <form onSubmit={handleSubmit} className="space-y-5 bg-white p-8 rounded-lg border border-gray-200">
       <div>
-        <label htmlFor="title" className="block text-sm font-medium text-gray-900 mb-1">
+        <label htmlFor="title" className="block text-sm font-medium text-gray-900 mb-2">
           Habit Title *
         </label>
         <input
@@ -49,12 +49,12 @@ const HabitForm: React.FC<HabitFormProps> = ({ onSubmit, initialHabit, existingH
           onChange={(e) => setTitle(e.target.value)}
           required
           placeholder="e.g., Do 10 pushups"
-          className="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full"
         />
       </div>
 
       <div>
-        <label htmlFor="trigger" className="block text-sm font-medium text-gray-900 mb-1">
+        <label htmlFor="trigger" className="block text-sm font-medium text-gray-900 mb-2">
           Trigger (After I...) *
         </label>
         <input
@@ -65,14 +65,14 @@ const HabitForm: React.FC<HabitFormProps> = ({ onSubmit, initialHabit, existingH
           onChange={(e) => setTrigger(e.target.value)}
           required
           placeholder="e.g., drink morning coffee"
-          className="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full"
         />
         <datalist id="trigger-suggestions">
           {existingTriggers.map((existingTrigger, index) => (
             <option key={index} value={existingTrigger} />
           ))}
         </datalist>
-        <p className="text-xs text-gray-600 mt-1">
+        <p className="text-xs text-gray-500 mt-2">
           {existingTriggers.length > 0
             ? 'Choose from existing triggers or type a new one'
             : 'What existing action triggers this habit?'}
@@ -80,7 +80,7 @@ const HabitForm: React.FC<HabitFormProps> = ({ onSubmit, initialHabit, existingH
       </div>
 
       <div>
-        <label htmlFor="description" className="block text-sm font-medium text-gray-900 mb-1">
+        <label htmlFor="description" className="block text-sm font-medium text-gray-900 mb-2">
           Description
         </label>
         <textarea
@@ -89,19 +89,19 @@ const HabitForm: React.FC<HabitFormProps> = ({ onSubmit, initialHabit, existingH
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Additional details about this habit..."
           rows={3}
-          className="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full resize-none"
         />
       </div>
 
       <div>
-        <label htmlFor="frequency" className="block text-sm font-medium text-gray-900 mb-1">
+        <label htmlFor="frequency" className="block text-sm font-medium text-gray-900 mb-2">
           Frequency
         </label>
         <select
           id="frequency"
           value={frequency}
           onChange={(e) => setFrequency(e.target.value as 'daily' | 'weekly' | 'monthly')}
-          className="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full"
         >
           <option value="daily">Daily</option>
           <option value="weekly">Weekly</option>
@@ -111,14 +111,14 @@ const HabitForm: React.FC<HabitFormProps> = ({ onSubmit, initialHabit, existingH
 
       {existingHabits.length > 0 && (
         <div>
-          <label htmlFor="linkedHabit" className="block text-sm font-medium text-gray-900 mb-1">
+          <label htmlFor="linkedHabit" className="block text-sm font-medium text-gray-900 mb-2">
             Link to Next Habit (Optional)
           </label>
           <select
             id="linkedHabit"
             value={linkedHabitId || ''}
             onChange={(e) => setLinkedHabitId(e.target.value ? Number(e.target.value) : undefined)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full"
           >
             <option value="">None</option>
             {existingHabits
@@ -129,13 +129,13 @@ const HabitForm: React.FC<HabitFormProps> = ({ onSubmit, initialHabit, existingH
                 </option>
               ))}
           </select>
-          <p className="text-xs text-gray-600 mt-1">Chain this habit to another habit</p>
+          <p className="text-xs text-gray-500 mt-2">Chain this habit to another habit</p>
         </div>
       )}
 
       <button
         type="submit"
-        className="w-full bg-blue-600 text-white py-3 px-4 rounded-xl hover:bg-blue-700 transition-colors font-medium shadow-md hover:shadow-lg"
+        className="w-full bg-blue-600 text-white py-2.5 px-4 rounded-lg hover:bg-blue-700 transition-all duration-200 font-medium shadow-sm hover:shadow"
       >
         {initialHabit ? 'Update Habit' : 'Create Habit'}
       </button>
