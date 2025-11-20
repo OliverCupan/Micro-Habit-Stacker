@@ -1,16 +1,16 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import { Nunito } from 'next/font/google';
+import { Righteous } from 'next/font/google';
 
-const nunito = Nunito({
+const righteous = Righteous({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '500', '600', '700', '800'],
+  weight: '400',
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className={nunito.className}>
+    <div className={righteous.className}>
       <Component {...pageProps} />
     </div>
   );
